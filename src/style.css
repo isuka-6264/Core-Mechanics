@@ -54,6 +54,14 @@ button{
     font-family: inherit;
 }
 
+input, select, textarea {
+    font-family: var(--font-body);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    outline: none;
+}
+
 .gold {
     color: var(--gold);
 }
@@ -68,6 +76,31 @@ button{
     padding: 0 24px;
 }
 
+/* Buttons */
+.button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: #000;
+    font-family: var(--font-ui);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 6px;
+    border: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.button-primary:hover {
+    background: #e0be6a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+}
 
 /* Navigation */
 .navbar {
@@ -173,31 +206,6 @@ button{
     justify-content: center;
 }
 
-.cta-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gold);
-    color: #000;
-    font-family: var(--font-ui);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 14px 32px;
-    border-radius: 6px;
-    border: none;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.cta-button:hover {
-    background: #e0be6a;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
-}
-
 /* Hero Section */
 .hero {
     position: relative;
@@ -279,7 +287,7 @@ button{
     align-items: start;
 }
 
-.aboout-text {
+.about-text p {
     color: var(--muted);
     line-height: 1.7;
     margin-bottom: 16px;
@@ -335,4 +343,133 @@ button{
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--muted);
+}
+
+/* Contact Section */
+.contact {
+    background: var(--bg);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.contact-item svg {
+    flex-shrink: 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text);
+    font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--gold);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--muted);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding-top: 64px;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+}
+
+.footer-brand .logo {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 240px;
+}
+
+.footer-links h4 {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+}
+
+.footer-links a {
+    color: var(--muted);
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--muted);
+    font-size: 13px;
 }
