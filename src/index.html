@@ -27,6 +27,23 @@
             </button>
         </div>
     </nav>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="closeCartButton">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty-msg">Your cart is currently empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
+            <button class="button-pay" id="payButton">Pay Now</button>
+            <button class="button-clear" id="clearCartButton">Clear Cart</button>
+        </div>
+    </aside> 
      
     <!-- HERO SECTION -->
     <section class="hero">
@@ -117,37 +134,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <span class="logo">CORE<span>MECHANICS</span></span>
-                <p>Premium auto parts & performance upgrades. Not a dealership -- a garage.</p>
-            </div>
-            <div></div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="catalog.html">Catalog</a></li>
-                    <li><a href="catalog-item.html">Featured Item</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Policy</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Shipping Info</a></li>
-                    <li><a href="#">Returns</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 CORE MECHANICS. All rights reserved.</p>
-        </div>
-    </footer>
+    <script src="./script.js"></script>
+    
 </body>
 </html>
