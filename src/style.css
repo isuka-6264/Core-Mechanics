@@ -473,3 +473,173 @@ input, select, textarea {
     color: var(--muted);
     font-size: 13px;
 }
+
+/* PAGE HEADER */
+.page-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 0 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 1;
+}
+
+.page-header-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: 3px;
+    margin: 8px 0 12px;
+}
+
+.page-header-description {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 500px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+.filter-search {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-search input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text);
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.filter-search input:focus {
+    border-color: var(--gold);
+}
+
+.filter-search input::placeholder {
+    color: var(--muted);
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.filter-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filter-button {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg3);
+    transition: all 0.2s;
+}
+
+.filter-button:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.filter-button.active {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+}
+
+.filter-sort select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-sort select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.filter-price {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+}
+
+.filter-price label {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.filter-price input[type="range"] {
+    width: 100%;
+    accent-color: var(--gold);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.results-info {
+    margin-bottom: 16px;
+}
+
+.results-info span {
+    font-family: var(--font-ui);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--muted);
+    font-size: 18px;
+}
+
+.catalog-section {
+    background: var(--bg);
+    min-height: 60vh;
+}

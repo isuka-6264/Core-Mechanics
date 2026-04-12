@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Core Mechanics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">CORE<span>MECHANICS</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="catalog.html" class="nav-link active">Catalog</a></li>
+                <li><a href="catalog-item.html" class="nav-link">Featured Item</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="cart-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Cart <span class="cart-count">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <p class="section-subtitle">CoreMechanics Storage</p>
+            <h1 class="page-header-title">Parts Catalog</h1>
+            <p class="page-header-description">Browse our full range of performance parts, upgrades & body kits</p>
+            <!-- BREADCRUMB (under development) --> 
+        </div> 
+    </header>
+
+    <!-- CATALOG CONTENT -->
+    <section class="catalog-section section">
+        <div class="container">
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <div class="filter-search">
+                    <input type="text" id="searchInput" placeholder="Search parts..."/>
+                    <span class="search-icon">&#128269;</span>
+                </div>
+                <div class="filter-categories">
+                    <button class="filter-button active" data-category="all">All</button>
+                    <button class="filter-button" data-category="engine">Engine</button>
+                    <button class="filter-button" data-category="exhaust">Exhaust</button>
+                    <button class="filter-button" data-category="suspension">Suspension</button>
+                    <button class="filter-button" data-category="body">Body Kits</button>
+                    <button class="filter-button" data-category="brakes">Brakes</button>
+                    <button class="filter-button" data-category="tuning">Tuning</button>
+                </div>
+                <div class="filter-sort">
+                    <select id="sortSelect">
+                        <option value="default">Sort: Default</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="name-desc">Name: Z to A</option>
+                    </select>
+                </div>
+                <div class="filter-price">
+                    <label>Max Price: $<span id="priceVal">2000</span></label>
+                    <input type="range" id="priceRange" min="50" max="2000" value="2000" step="50"/>
+                </div>
+            </div>
+
+            <!-- RESULTS INFO -->
+            <div class="results-info">
+                <span id="resultsCount">Showing all products</span>
+            </div>
+
+            <!-- PRODUCTS GRID -->
+            <div class="products-grid" id="catalogGrid">
+                <!-- Product cards will be rendered here by JavaScript -->
+            </div>
+
+            <!-- NO RESULTS MESSAGE -->
+            <div class="no-results" id="noResultsMessage">
+                <p>No products found matching your criteria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo">CORE<span>MECHANICS</span></span>
+                <p>Premium auto parts & performance upgrades. Not a dealership -- a garage.</p>
+            </div>
+            <div></div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="catalog-item.html">Featured Item</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Policy</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CORE MECHANICS. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
