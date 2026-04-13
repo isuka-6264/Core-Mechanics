@@ -1,0 +1,61 @@
+name: Validate Code
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint-and-validate:
+    name: HTML Validation & JS Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # ── HTML VALIDATION ──────────────────────────────────────────
+      - name: Validate HTML files
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          extra: --skip-non-html
+
+      # ── JS LINTING ───────────────────────────────────────────────
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Install ESLint
+        run: npm install --save-dev eslint @eslint/js
+
+      - name: Create ESLint config
+        run: |
+          cat > eslint.config.mjs << 'EOF'
+          import js from "@eslint/js";
+          export default [
+            js.configs.recommended,
+            {
+              languageOptions: {
+                ecmaVersion: 2022,
+                globals: {
+                  document: "readonly",
+                  window: "readonly",
+                  console: "readonly",
+                  Date: "readonly",
+                  parseInt: "readonly",
+                  parseFloat: "readonly",
+                },
+              },
+              rules: {
+                "no-unused-vars": "warn",
+                "no-undef": "warn",
+              },
+            },
+          ];
+          EOF
+
+      - name: Run ESLint
+        run: npx eslint script.js
