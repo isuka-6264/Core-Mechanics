@@ -58,4 +58,4 @@ jobs:
           EOF
 
       - name: Run ESLint
-        run: npx eslint script.js
+        run: npx eslint "src/script.js"
