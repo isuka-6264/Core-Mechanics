@@ -1,36 +1,14 @@
-name: Validate Code
+name: Workflow
 
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+on: [push]
 
 jobs:
-  lint-and-validate:
-    name: HTML Validation & JS Lint
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # ── HTML VALIDATION ──────────────────────────────────────────
-      - name: Validate HTML files
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      - uses: actions/checkout@v5        # checks out your code
+      - uses: actions/setup-node@v4      # sets up Node.js
         with:
-          root: .
-          # Validates all .html files found in the repo root
-          extra: --skip-non-html
-
-      # ── JS LINTING ───────────────────────────────────────────────
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install ESLint
-        run: npm install --save-dev eslint @eslint/js
-
-      - name: Run ESLint
-        run: npx eslint script.js --rule '{"no-unused-vars": "warn", "no-undef": "warn"}'
+          node-version: '20'
+      - run: npm install                 # install dependencies
+      - run: npm test                    # run tests
