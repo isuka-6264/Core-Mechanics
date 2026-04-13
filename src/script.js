@@ -189,7 +189,22 @@ const products = [
 // =================
 // GLOBAL CART ARRAY
 // =================
-let cart = [];
+const CART_STORAGE_KEY = 'coremechanics_cart'; // localStorage key name
+
+const saveCart = () => {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
+}
+
+const loadCart = () => {
+  try {
+    const saved = localStorage.getItem(CART_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+};
+
+let cart = loadCart();
 
 // ================
 // UTILITY FUNCTIONS
@@ -282,6 +297,7 @@ const updateCartCount = () => {
 // Add item to cart
 const addToCartItem = (item) => {
   cart.push(item);
+  saveCart();
   updateCartCount();
   renderCart();
 };
@@ -289,6 +305,7 @@ const addToCartItem = (item) => {
 // Remove item from cart
 const removeFromCart = (itemId) => {
   cart = cart.filter(item => item.id !== itemId);
+  saveCart();
   updateCartCount();
   renderCart();
 };
@@ -296,6 +313,7 @@ const removeFromCart = (itemId) => {
 // Clear cart
 const clearCart = () => {
   cart = [];
+  saveCart();
   updateCartCount();
   renderCart();
 };
@@ -468,6 +486,7 @@ function initFilters() {
 document.addEventListener('DOMContentLoaded', () => {
   
   updateCartCount();
+  renderCart();
 
   document.getElementById('cartToggle')?.addEventListener('click', () => {
     const sidebar = document.getElementById('cartSidebar');
