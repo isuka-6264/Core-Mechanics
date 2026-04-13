@@ -6,9 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5        # checks out your code
-      - uses: actions/setup-node@v4      # sets up Node.js
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5        # ✅ updated from v4
         with:
-          node-version: '20'
-      - run: npm install                 # install dependencies
-      - run: npm test                    # run tests
+          node-version: '20'              # this is your app's Node version, keep as needed
+      - run: npm install
+      - run: npm test
