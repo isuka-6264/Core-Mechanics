@@ -69,7 +69,7 @@
                     <button class="filter-button" data-category="engine">Engine</button>
                     <button class="filter-button" data-category="exhaust">Exhaust</button>
                     <button class="filter-button" data-category="suspension">Suspension</button>
-                    <button class="filter-button" data-category="body">Body Kits</button>
+                    <button class="filter-button" data-category="bodykit">Body Kits</button>
                     <button class="filter-button" data-category="brakes">Brakes</button>
                     <button class="filter-button" data-category="tuning">Tuning</button>
                 </div>
@@ -83,8 +83,8 @@
                     </select>
                 </div>
                 <div class="filter-price">
-                    <label>Max Price: $<span id="priceVal">2000</span></label>
-                    <input type="range" id="priceRange" min="50" max="2000" value="2000" step="50"/>
+                    <label>Max Price: <span id="priceVal">400 000</span> ₽</label>
+                    <input type="range" id="priceRange" min="4000" max="400000" value="400000" step="4000"/>
                 </div>
             </div>
 
@@ -104,6 +104,16 @@
             </div>
         </div>
     </section>
+
+    <!-- POPUP -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-box" id="popupBox">
+            <div class="popup-icon" id="popupIcon"></div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupMsg"></p>
+            <button class="button-primary" onclick="closePopup()">OK</button>
+        </div>
+    </div>  
 
     <script src="./script.js"></script>
     

@@ -23,7 +23,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                     <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                Cart <span class="cart-count">0</span>
+                Cart <span class="cart-count" id="cartCount">0</span>
             </button>
         </div>
     </nav>
@@ -39,7 +39,7 @@
             <p class="cart-empty-msg">Your cart is currently empty.</p>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
+            <div class="cart-total">Total: <span id="cartTotal">0,00 ₽</span></div>
             <button class="button-pay" id="payButton">Pay Now</button>
             <button class="button-clear" id="clearCartButton">Clear Cart</button>
         </div>
@@ -133,6 +133,16 @@
             </div>
         </div>
     </section>
+
+    <!-- POPUP -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-box" id="popupBox">
+            <div class="popup-icon" id="popupIcon"></div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupMsg"></p>
+            <button class="button-primary" onclick="closePopup()">OK</button>
+        </div>
+    </div>  
 
     <script src="./script.js"></script>
     
