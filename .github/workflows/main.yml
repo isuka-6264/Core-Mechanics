@@ -32,5 +32,31 @@ jobs:
       - name: Install ESLint
         run: npm install --save-dev eslint @eslint/js
 
+      - name: Create ESLint config
+        run: |
+          cat > eslint.config.mjs << 'EOF'
+          import js from "@eslint/js";
+          export default [
+            js.configs.recommended,
+            {
+              languageOptions: {
+                ecmaVersion: 2022,
+                globals: {
+                  document: "readonly",
+                  window: "readonly",
+                  console: "readonly",
+                  Date: "readonly",
+                  parseInt: "readonly",
+                  parseFloat: "readonly",
+                },
+              },
+              rules: {
+                "no-unused-vars": "warn",
+                "no-undef": "warn",
+              },
+            },
+          ];
+          EOF
+
       - name: Run ESLint
-        run: npx eslint script.js --rule '{"no-unused-vars": "warn", "no-undef": "warn"}'
+        run: npx eslint script.js
