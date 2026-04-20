@@ -41,7 +41,7 @@ document.body.insertAdjacentHTML('beforeend', `
 /* PRODUCT */
 const products = [
   {
-    id: 'p01',
+    id: '1',
     name: 'Garrett GT3582R Turbocharger',
     brand: 'Garrett',
     category: 'engine',
@@ -50,7 +50,7 @@ const products = [
     description: 'Ball bearing turbocharger, 700whp capable, T3/T4 divided housing.'
   },
   {
-    id: 'p02',
+    id: '2',
     name: 'HKS Hi-Power Exhaust System',
     brand: 'HKS',
     category: 'exhaust',
@@ -59,7 +59,7 @@ const products = [
     description: 'Stainless 76mm cat-back system with polished dual tips.'
   },
   {
-    id: 'p03',
+    id: '3',
     name: 'KW Coilover Kit V3',
     brand: 'KW Suspension',
     category: 'suspension',
@@ -68,7 +68,7 @@ const products = [
     description: 'Fully adjustable compression & rebound, 50–100mm lowering range.'
   },
   {
-    id: 'p04',
+    id: '4',
     name: 'Voltex Type-5 Front Splitter',
     brand: 'Voltex',
     category: 'bodykit',
@@ -77,7 +77,7 @@ const products = [
     description: 'Carbon fibre aero splitter with adjustable lip. Aggressive downforce.'
   },
   {
-    id: 'p05',
+    id: '5',
     name: 'Brembo GT Big Brake Kit',
     brand: 'Brembo',
     category: 'brakes',
@@ -86,7 +86,7 @@ const products = [
     description: '6-piston front calipers, 380mm cross-drilled rotors. Track ready.'
   },
   {
-    id: 'p06',
+    id: '6',
     name: 'Hondata FlashPro ECU Tune',
     brand: 'Hondata',
     category: 'tuning',
@@ -95,7 +95,7 @@ const products = [
     description: 'Full ECU remapping solution, live data logging, boost control.'
   },
   {
-    id: 'p07',
+    id: '7',
     name: 'Tomei Expreme Ti Catback',
     brand: 'Tomei',
     category: 'exhaust',
@@ -104,7 +104,7 @@ const products = [
     description: 'Titanium cat-back exhaust, ultra-light, raw motorsport tone.'
   },
   {
-    id: 'p08',
+    id: '8',
     name: 'BC Racing BR Series Coilovers',
     brand: 'BC Racing',
     category: 'suspension',
@@ -113,7 +113,7 @@ const products = [
     description: 'Monotube design, 30-way adjustable damping, street & track capable.'
   },
   {
-    id: 'p09',
+    id: '9',
     name: 'Varis Carbon Rear Wing',
     brand: 'Varis',
     category: 'bodykit',
@@ -122,7 +122,7 @@ const products = [
     description: 'Dry carbon GT wing, adjustable angle, full hardware included.'
   },
   {
-    id: 'p10',
+    id: '10',
     name: 'AEM Cold Air Intake System',
     brand: 'AEM',
     category: 'engine',
@@ -131,7 +131,7 @@ const products = [
     description: 'Mandrel-bent aluminium intake tube, high-flow DryFlow filter.'
   },
   {
-    id: 'p11',
+    id: '11',
     name: 'Wilwood Brake Pad Set — Track',
     brand: 'Wilwood',
     category: 'brakes',
@@ -140,7 +140,7 @@ const products = [
     description: 'High-temp compound, zero fade up to 800°C, fits most big brake kits.'
   },
   {
-    id: 'p12',
+    id: '12',
     name: 'Haltech Elite 2500 ECU',
     brand: 'Haltech',
     category: 'tuning',
@@ -149,7 +149,7 @@ const products = [
     description: 'Standalone engine management, 8-cylinder support, full sensor suite.'
   },
   {
-    id: 'p13',
+    id: '13',
     name: 'Mishimoto Intercooler Kit',
     brand: 'Mishimoto',
     category: 'engine',
@@ -158,7 +158,7 @@ const products = [
     description: 'Bar-and-plate front mount intercooler, 2.5" inlet/outlet, bolt-on.'
   },
   {
-    id: 'p14',
+    id: '14',
     name: 'Whiteline Sway Bar Kit',
     brand: 'Whiteline',
     category: 'suspension',
@@ -167,7 +167,7 @@ const products = [
     description: 'Adjustable front & rear sway bars, reduces body roll by 30%.'
   },
   {
-    id: 'p15',
+    id: '15',
     name: 'TurboSmart Boost Controller',
     brand: 'TurboSmart',
     category: 'tuning',
@@ -176,7 +176,7 @@ const products = [
     description: 'Manual boost controller, 1-40 PSI range, compact universal fit.'
   },
   {
-    id: 'p16',
+    id: '16',
     name: 'Rocket Bunny Wide Body Kit',
     brand: 'Rocket Bunny',
     category: 'bodykit',
@@ -319,23 +319,51 @@ const clearCart = () => {
 };
 
 // Handle Payment
-const handlePay = () => {
+const handlePay = async () => {
   if (cart.length === 0) {
     showPopup('warning', 'Cart is Empty', 'Please add at least one item to your cart before proceeding to payment.');
     return;
   }
 
+  const token = localStorage.getItem('cm_token');
+  if (!token) {
+    showPopup('warning', 'Not Logged In', 'Please login before placing an order.');
+    closeCart();
+    setTimeout(() => window.location.href = 'login.html', 2000);
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem('cm_user'));
   const total = calculateCartTotal();
   const itemCount = cart.length;
 
-  clearCart();
-  closeCart();
+  try {
+    for (const item of cart) {
+      await fetch('http://localhost:3000/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId: parseInt(item.id.split('_')[0]),
+          quantity: item.quantity || 1,
+          customerName: user.name || user.email,
+        }),
+      });
+    }
 
-  showPopup(
-    'success',
-    'Purchase Successful!',
-    `Thank you for your order! ${itemCount} item${itemCount !== 1 ? 's' : ''} purchased for ${formatPrice(total)}. You will receive a confirmation email shortly.`
-  );
+    clearCart();
+    closeCart();
+    showPopup(
+      'success',
+      'Purchase Successful!',
+      `Thank you for your order! ${itemCount} item${itemCount !== 1 ? 's' : ''} purchased for ${formatPrice(total)}. You will receive a confirmation email shortly.`
+    );
+
+  } catch (err) {
+    showPopup('warning', 'Order Failed', 'Could not connect to server. Please try again.');
+  }
 };
 
 // =================
