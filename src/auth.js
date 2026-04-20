@@ -74,7 +74,7 @@ if (loginButton) {
 
       // Decode token to get user info
       const payload = JSON.parse(atob(data.token.split('.')[1]));
-      saveAuth(data.token, { name: payload.email, email: payload.email, role: payload.role });
+      saveAuth(data.token, { name: payload.name, email: payload.email, role: payload.role });
       window.location.href = 'index.html';
 
     } catch (err) {
