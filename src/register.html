@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Featured - Core Mechanics</title>
+    <title>Register - Core Mechanics</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="./style.css"/>
 </head>
@@ -15,7 +15,6 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="catalog.html" class="nav-link">Catalog</a></li>
-                <li><a href="catalog-item.html" class="nav-link active">Featured Item</a></li>
                 <li><a href="index.html#about" class="nav-link">About</a></li>
                 <li><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -28,29 +27,23 @@
         </div>
     </nav>
 
-    <!-- CART SIDEBAR -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-    <aside class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button class="close-cart" id="closeCartButton">&times;</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <p class="cart-empty-msg">Your cart is currently empty.</p>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
-            <button class="button-pay" id="payButton">Pay Now</button>
-            <button class="button-clear" id="clearCartButton">Clear Cart</button>
-        </div>
-    </aside> 
-
-    <!-- PAGE HEADER -->
-    <header class="page-header">
+    <!-- REGISTER SECTION -->
+    <section class="auth-section section">
         <div class="container">
-            <h1 class="page-header-title">Under Construction :) </h1>
-        </div> 
-    </header>
+            <div class="auth-box">
+                <p class="section-subtitle">Join Us</p>
+                <h1 class="section-title">Register</h1>
+                <div class="auth-error" id="authError"></div>
+                <div class="auth-form">
+                    <input type="text" id="registerName" placeholder="Full Name"/>
+                    <input type="email" id="registerEmail" placeholder="Email Address"/>
+                    <input type="password" id="registerPassword" placeholder="Password (min 6 characters)"/>
+                    <button class="button-primary" id="registerButton">Create Account</button>
+                    <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="./script.js"></script>
     <script src="./auth.js"></script>
