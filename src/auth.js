@@ -51,6 +51,35 @@ function updateNav() {
   }
 }
 
+// --- EMAIL AVAILABILITY CHECK ---
+const registerEmail = document.getElementById('registerEmail');
+if (registerEmail) {
+  registerEmail.addEventListener('input', async () => {
+    const email = registerEmail.value.trim();
+    const hint = document.getElementById('emailHint');
+
+    if (!email || !email.includes('@')) {
+      hint.textContent = '';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/auth/check-email?email=${encodeURIComponent(email)}`);
+      const data = await res.json();
+
+      if (data.available) {
+        hint.style.color = '#4caf50';
+        hint.textContent = '✓ Email is available';
+      } else {
+        hint.style.color = '#ff4d4d';
+        hint.textContent = '✗ Email already registered';
+      }
+    } catch {
+      hint.textContent = '';
+    }
+  });
+}
+
 // --- LOGIN PAGE ---
 const loginButton = document.getElementById('loginButton');
 if (loginButton) {
