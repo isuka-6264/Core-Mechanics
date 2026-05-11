@@ -21,34 +21,42 @@ class AuthController {
     }
 
     public function login(array $input): array {
-        $login = trim($input['login'] ?? '');
+        $email = trim($input['email'] ?? '');
         $password = trim($input['password'] ?? '');
 
-        if (empty($login) || empty($password)) {
-            $this->log($login,'FAIL_LOGIN');
-            return ['status' => 'error', 'message' => 'Login and password are required'];
+        if (empty($email) || empty($password)) {
+            $this->log($email, 'FAIL_LOGIN');
+            return ['status' => 'error', 'message' => 'Email and password are required'];
         }
 
-        $user = $this->userModel->findByLogin($login);
+        $users = $this->userModel->getAll();
+        $user = null;
+        foreach ($users as $u) {
+            if ($u['email'] === $email) {
+                $user = $u;
+                break;
+            }
+        }
 
         if (!$user) {
-            $this->log($login,'FAIL_LOGIN_USER_NOT_FOUND');
-            return ['status'=> 'error', 'message'=> 'User not found'];
+            $this->log($email, 'FAIL_LOGIN_USER_NOT_FOUND');
+            return ['status' => 'error', 'message' => 'User not found'];
         }
 
         if (!$this->userModel->verifyPassword($password, $user['password_hash'])) {
-            $this->log($login,'FAIL_LOGIN');
-            return ['status'=> 'error', 'message'=> 'Invalid password'];
+            $this->log($email, 'FAIL_LOGIN');
+            return ['status' => 'error', 'message' => 'Invalid password'];
         }
 
         session_start();
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['login'] = $login;
-        $_SESSION['role'] = $user['role'];
+        $_SESSION['login'] = $email;
+        $_SESSION['role'] = $user['role'] ?? 'user';
 
-        $this->log($login,'SUCCESS_LOGIN');
-        return ['status'=> 'success','message'=> 'You are logged in', 'role' => $user['role']];
+        $this->log($email, 'SUCCESS_LOGIN');
+        return ['status' => 'success', 'message' => 'You are logged in'];
     }
+    
     public function logout(): array {
         session_start();
         $login = $_SESSION['login'] ?? 'unknown';
