@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Linh",
+        "email": "isuka-6264@gmail.com",
+        "password_hash": "$2y$10$aDWu6qQbwbX2.USH5KuPFe\/HpxaGppLJ9Ie2cHpoRtGybDWq7cgb."
+    }
+]
